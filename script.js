@@ -1,5 +1,5 @@
 const CONFIG = {
-    API_KEY: 'c5aba6c3444733871d2f540e63c32bd5',
+    API_KEY: '3cea770cffdd1a51d08ebf4416819576',
     BASE_URL: 'https://api.openweathermap.org/data/2.5',
     AIR_QUALITY_URL: 'https://api.openweathermap.org/data/2.5/air_pollution',
     UNITS: 'metric',
