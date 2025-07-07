@@ -1,5 +1,5 @@
 const CONFIG = {
-    API_KEY: 'YOUR_API_KEY', // Substitua pela sua chave da API OpenWeatherMap
+    API_KEY: 'c5aba6c3444733871d2f540e63c32bd5',
     BASE_URL: 'https://api.openweathermap.org/data/2.5',
     AIR_QUALITY_URL: 'https://api.openweathermap.org/data/2.5/air_pollution',
     UNITS: 'metric',
