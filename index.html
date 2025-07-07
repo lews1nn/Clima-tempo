@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clima Tempo Pro - Previsão do Tempo Inteligente</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <header class="main-header">
+            <nav class="nav-container">
+                <div class="logo">
+                    <i class="fas fa-cloud-sun"></i>
+                    <span>Clima Tempo Pro</span>
+                </div>
+                <div class="nav-actions">
+                    <button id="locationBtn" class="location-btn" title="Usar minha localização">
+                        <i class="fas fa-location-arrow"></i>
+                        <span>Minha Localização</span>
+                    </button>
+                    <button id="settingsBtn" class="settings-btn" title="Configurações">
+                        <i class="fas fa-cog"></i>
+                    </button>
+                </div>
+            </nav>
+            
+            <div class="search-section">
+                <div class="search-box">
+                    <i class="fas fa-search search-icon"></i>
+                    <input type="text" id="cityInput" placeholder="Digite o nome da cidade...">
+                    <button id="searchBtn" class="search-button">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+                <div class="recent-searches" id="recentSearches">
+                </div>
+            </div>
+        </header>
+
+        <main class="main-content">
+            <section class="current-weather-section">
+                <div class="weather-card" id="weatherCard">
+                    <div class="weather-header">
+                        <div class="location-info">
+                            <h2 id="cityName">Detectando sua localização...</h2>
+                            <p id="dateTime">--</p>
+                            <p id="coordinates">--</p>
+                        </div>
+                        <div class="weather-main">
+                            <div class="temperature-display">
+                                <span id="temperature">--</span>°C
+                            </div>
+                            <div class="weather-description">
+                                <i id="weatherIcon" class="fas fa-spinner fa-spin"></i>
+                                <span id="weatherDesc">Carregando...</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="weather-details-grid">
+                        <div class="detail-card">
+                            <i class="fas fa-thermometer-half"></i>
+                            <div class="detail-info">
+                                <span class="detail-label">Sensação Térmica</span>
+                                <span class="detail-value" id="feelsLike">--°C</span>
+                            </div>
+                        </div>
+                        <div class="detail-card">
+                            <i class="fas fa-tint"></i>
+                            <div class="detail-info">
+                                <span class="detail-label">Umidade</span>
+                                <span class="detail-value" id="humidity">--%</span>
+                            </div>
+                        </div>
+                        <div class="detail-card">
+                            <i class="fas fa-wind"></i>
+                            <div class="detail-info">
+                                <span class="detail-label">Vento</span>
+                                <span class="detail-value" id="windSpeed">-- km/h</span>
+                            </div>
+                        </div>
+                        <div class="detail-card">
+                            <i class="fas fa-eye"></i>
+                            <div class="detail-info">
+                                <span class="detail-label">Visibilidade</span>
+                                <span class="detail-value" id="visibility">-- km</span>
+                            </div>
+                        </div>
+                        <div class="detail-card">
+                            <i class="fas fa-compress-arrows-alt"></i>
+                            <div class="detail-info">
+                                <span class="detail-label">Pressão</span>
+                                <span class="detail-value" id="pressure">-- hPa</span>
+                            </div>
+                        </div>
+                        <div class="detail-card">
+                            <i class="fas fa-sun"></i>
+                            <div class="detail-info">
+                                <span class="detail-label">UV Index</span>
+                                <span class="detail-value" id="uvIndex">--</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="forecast-section">
+                <div class="forecast-container">
+                    <div class="section-header">
+                        <h3><i class="fas fa-calendar-alt"></i> Previsão para os próximos 7 dias</h3>
+                        <div class="forecast-tabs">
+                            <button class="tab-btn active" data-tab="daily">Diária</button>
+                            <button class="tab-btn" data-tab="hourly">Por Hora</button>
+                        </div>
+                    </div>
+                    
+                    <div class="forecast-content">
+                        <div class="forecast-grid" id="forecastContainer">
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="additional-info-section">
+                <div class="info-grid">
+                    <div class="info-card sunrise-sunset">
+                        <h4><i class="fas fa-sun"></i> Nascer e Pôr do Sol</h4>
+                        <div class="sun-info">
+                            <div class="sun-item">
+                                <i class="fas fa-sunrise"></i>
+                                <span>Nascer: <span id="sunrise">--:--</span></span>
+                            </div>
+                            <div class="sun-item">
+                                <i class="fas fa-sunset"></i>
+                                <span>Pôr: <span id="sunset">--:--</span></span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="info-card air-quality">
+                        <h4><i class="fas fa-leaf"></i> Qualidade do Ar</h4>
+                        <div class="aqi-info">
+                            <div class="aqi-value" id="aqiValue">--</div>
+                            <div class="aqi-label" id="aqiLabel">Carregando...</div>
+                        </div>
+                    </div>
+                    
+                    <div class="info-card hourly-forecast">
+                        <h4><i class="fas fa-clock"></i> Próximas Horas</h4>
+                        <div class="hourly-scroll" id="hourlyForecast">
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <div class="loading-overlay" id="loading">
+            <div class="loading-content">
+                <div class="spinner"></div>
+                <p>Carregando dados meteorológicos...</p>
+            </div>
+        </div>
+
+        <div class="error-overlay" id="error">
+            <div class="error-content">
+                <i class="fas fa-exclamation-triangle"></i>
+                <h3>Ops! Algo deu errado</h3>
+                <p id="errorMessage">Erro ao carregar dados do clima</p>
+                <button id="retryBtn" class="retry-btn">Tentar Novamente</button>
+            </div>
+        </div>
+
+        <div class="modal" id="settingsModal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3><i class="fas fa-cog"></i> Configurações</h3>
+                    <button class="close-btn" id="closeSettings">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="setting-group">
+                        <label>Unidade de Temperatura:</label>
+                        <select id="tempUnit">
+                            <option value="celsius">Celsius (°C)</option>
+                            <option value="fahrenheit">Fahrenheit (°F)</option>
+                        </select>
+                    </div>
+                    <div class="setting-group">
+                        <label>Unidade de Velocidade:</label>
+                        <select id="windUnit">
+                            <option value="kmh">km/h</option>
+                            <option value="mph">mph</option>
+                        </select>
+                    </div>
+                    <div class="setting-group">
+                        <label>
+                            <input type="checkbox" id="autoLocation"> Usar localização automática
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html> 
