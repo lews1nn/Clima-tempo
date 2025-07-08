@@ -1,8 +1,8 @@
 const CONFIG = {
-    API_KEY: 'e2815b61fa27445ebc1160227250707',
-    BASE_URL: 'https://api.weatherapi.com/v1',
+    API_KEY: '3cea770cffdd1a51d08ebf4416819576',
+    BASE_URL: 'https://api.openweathermap.org/data/2.5',
     UNITS: 'metric',
-    LANGUAGE: 'pt',
+    LANGUAGE: 'pt_br',
     DEFAULT_CITY: 'São Paulo, BR'
 };
 
